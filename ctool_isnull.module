@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Module file for Title hide module.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ctool_isnull_ctools_plugin_directory($module, $plugin) {
+  if ($module == 'ctools' && !empty($plugin)) {
+    return "plugins/$plugin";
+  }
+}

@@ -1,0 +1,6 @@
+name = Ctools isnull
+description = Ctools access plugin which hides a field if another field is null.
+package = IVCF
+core = 7.x
+
+dependencies[] = ctools
