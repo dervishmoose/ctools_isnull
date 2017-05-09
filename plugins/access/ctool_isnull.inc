@@ -12,15 +12,22 @@ $plugin = array(
   'default' => array('negate' => 0),
   'summary' => 'ctool_isnull_ctools_access_summary',
   'settings form' => 'ctool_isnull_ctools_access_settings',
-  'required context' => new ctools_context_required(t('Node'), 'node'),
+  // 'required context' => array(
+  //   new ctools_context_required(t('Node'), 'node'),
+  //   new ctools_context_required(t('Term'), 'term'),
+  // ),
 );
 
 /**
  * Settings form for the 'title hide' access plugin.
  */
-function ctool_isnull_ctools_access_settings($form, &$form_state, $conf) {
-  $fields = array_keys (field_read_fields(array('entity_type' => 'node')));
-// cheap way to make the keys and the values the same
+function ctool_isnull_ctools_access_settings($form, &$form_state, $conf, $context) {
+
+  $fieldsnodes = array_keys (field_read_fields(array('entity_type' => 'node')));
+  $fieldsterms = array_keys (field_read_fields(array('entity_type' => 'taxonomy_term')));
+  $fields = array_merge( $fieldsnodes , $fieldsterms );
+  sort ($fields);
+  // cheap way to make the keys and the values the same
   $fields_value =array_combine ( $fields , $fields );
 
   $form['settings']['keyword'] = array(
@@ -64,5 +71,5 @@ function ctool_isnull_ctools_access_check($conf, $context) {
  */
 function ctool_isnull_ctools_access_summary($conf, $context) {
   $replacement = array('@keyword' => $conf['keyword']);
-  return t('Checks if "@keyword" is null.', $replacement);
+  return t('Show if "@keyword" is null.', $replacement);
 }
