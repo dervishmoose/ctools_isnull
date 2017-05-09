@@ -1,5 +1,5 @@
 name = Ctools isnull
-description = Ctools access plugin which hides a field if another field is null.
+description = Ctools access plugin which shows a pane if, a field is null.
 package = IVCF
 core = 7.x
 
